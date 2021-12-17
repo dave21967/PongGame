@@ -58,6 +58,9 @@ public class GameScene extends Scene {
     
     public GameScene() {
         super("pong");
+
+        System.out.println("Inizializzazione gioco...");
+
         diff = difficulties.NORMAL;
         view = "menu";
         mode = "single";
