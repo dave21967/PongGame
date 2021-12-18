@@ -13,9 +13,6 @@ import vghengine.window.Window;
  */
 public class PongGame {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         Window gameWindow = new Window("PONG-GAME", 1024, 608, new GameScene());
     }

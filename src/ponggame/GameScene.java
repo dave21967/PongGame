@@ -62,7 +62,7 @@ public class GameScene extends Scene {
         System.out.println("Inizializzazione gioco...");
 
         diff = difficulties.NORMAL;
-        view = "menu";
+        setView("menu");
         mode = "single";
         
         timer = new Timer(120);
@@ -141,7 +141,7 @@ public class GameScene extends Scene {
     
     public void onDraw(Graphics2D g) {
         bg.draw(g);
-        if(view.equals("game")) {
+        if(getView().equals("game")) {
             r1.draw(g);
             r2.draw(g);
             ball.draw(g);
@@ -149,21 +149,21 @@ public class GameScene extends Scene {
             p2Lbl.draw(g);
             timeLbl.draw(g);
         }
-        if(view.equals("menu")) {
+        if(getView().equals("menu")) {
             lbl.draw(g);
             startBtn.draw(g);
             exitBtn.draw(g);
             credits.draw(g);
             vsBtn.draw(g);
         }
-        if(view.equals("diff_select")) {
+        if(getView().equals("diff_select")) {
             lbl.draw(g);
             easyBtn.draw(g);
             normalBtn.draw(g);
             hardBtn.draw(g);
             menuBtn.draw(g);
         }
-        if(view.equals("game_over")) {
+        if(getView().equals("game_over")) {
             p1Lbl.draw(g);
             p2Lbl.draw(g);
             gameOverLbl.draw(g);
@@ -174,7 +174,7 @@ public class GameScene extends Scene {
     }
     
     public void onUpdate() {
-        if(view.equals("game")) {
+        if(getView().equals("game")) {
             try {
                 timer.start();
             }
@@ -266,10 +266,10 @@ public class GameScene extends Scene {
                 ball.setY(304);
             }
             if(scoreP1 == 5 || scoreP2 == 5 || timer.getTimeLeft() == 0) {
-                view = "game_over";
+                setView("game_over");
             }
         }
-        else if(view.equals("menu")) {
+        else if(getView().equals("menu")) {
             scoreP1 = 0;
             scoreP2 = 0;
             r1.setX(32);
@@ -283,7 +283,7 @@ public class GameScene extends Scene {
     }
     
     public void onKeyPressed(KeyEvent ke) {
-        if(view.equals("game")) {
+        if(getView().equals("game")) {
             if(ke.getKeyChar() == 'w') {
                 r1.setVelocity(0, -3);
             }
@@ -299,7 +299,7 @@ public class GameScene extends Scene {
                 }
             }
             if(ke.getKeyChar() == '\n') {
-                view = "menu";
+                setView("menu");
                 scoreP1 = 0;
                 scoreP2 = 0;
                 r1.setX(32);
@@ -313,7 +313,7 @@ public class GameScene extends Scene {
     }
     
     public void onKeyReleased(KeyEvent ke) {
-        if(view.equals("game")) {
+        if(getView().equals("game")) {
             if(ke.getKeyChar() == 'w' || ke.getKeyChar() == 's') {
                 r1.setVelocity(0, 0);
             }
@@ -324,39 +324,39 @@ public class GameScene extends Scene {
     }
     
     public void onMouseClicked(MouseEvent me) {
-        if(view.equals("menu")) {
+        if(getView().equals("menu")) {
             if(startBtn.rect.contains(me.getX(), me.getY())) {
-                view = "diff_select";
+                setView("diff_select");
                 mode = "single";
             }
             if(vsBtn.rect.contains(me.getX(), me.getY())) {
-                view = "game";
+                setView("game");
                 mode = "1v1";
             }
             if(exitBtn.rect.contains(me.getX(), me.getY())) {
                 System.exit(0);
             }
         }
-        if(view.equals("game_over")) {
+        if(getView().equals("game_over")) {
             if(menuBtn.rect.contains(me.getX(), me.getY())) {
-                view = "menu";
+                setView("menu");
             }
         }
-        if(view.equals("diff_select")) {
+        if(getView().equals("diff_select")) {
             if(easyBtn.rect.contains(me.getX(), me.getY())) {
-                view = "game";
+                setView("game");
                 diff = difficulties.EASY;
             }
             if(normalBtn.rect.contains(me.getX(), me.getY())) {
-                view = "game";
+                setView("game");
                 diff = difficulties.NORMAL;
             }
             if(hardBtn.rect.contains(me.getX(), me.getY())) {
-                view = "game";
+                setView("game");
                 diff = difficulties.HARD;
             }
             if(menuBtn.rect.contains(me.getX(), me.getY())) {
-                view = "menu";
+                setView("menu");
             }
         }
     }
